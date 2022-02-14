@@ -1,0 +1,12 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+.DS_Store
+.env
+.cache
+.vscode
+
+# dependencies
+/app/node_modules
+/app/.pnp
+/app/.pnp.js
+/app/.env
