@@ -1,5 +1,5 @@
-import { web3 } from '@project-serum/anchor';
 import * as anchor from '@project-serum/anchor';
+import { web3 } from '@project-serum/anchor';
 import { TOKEN_PROGRAM_ID } from '@solana/spl-token';
 import { SystemProgram } from '@solana/web3.js';
 import {
@@ -10,15 +10,15 @@ import {
 
 // CLI Properties Given to us
 const candyMachineProgram = new web3.PublicKey(
-  'cndy3Z4yapfJBmL3ShUp5exZKqR3z33thTzeNMm2gRZ'
+  'cndy3Z4yapfJBmL3ShUp5exZKqR3z33thTzeNMm2gRZ',
 );
 
 const TOKEN_METADATA_PROGRAM_ID = new web3.PublicKey(
-  'metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s'
+  'metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s',
 );
 
 const SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID = new web3.PublicKey(
-  'ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL'
+  'ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL',
 );
 
 const CIVIC = new anchor.web3.PublicKey(
@@ -56,7 +56,7 @@ const formatNumber = {
   },
 };
 
-const getAtaForMint = async (mint, buyer)=> {
+const getAtaForMint = async (mint, buyer) => {
   return await anchor.web3.PublicKey.findProgramAddress(
     [buyer.toBuffer(), TOKEN_PROGRAM_ID.toBuffer(), mint.toBuffer()],
     SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID,

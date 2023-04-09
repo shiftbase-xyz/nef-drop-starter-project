@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+
 import './App.css';
 import twitterLogo from './assets/twitter-logo.svg';
 import CandyMachine from './CandyMachine';
+
 // Constants
 const TWITTER_HANDLE = 'ta_ka_sea0';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
@@ -21,7 +23,7 @@ const App = () => {
           const response = await solana.connect({ onlyIfTrusted: true });
           console.log(
             'Connected with Public Key:',
-            response.publicKey.toString()
+            response.publicKey.toString(),
           );
 
           /*
