@@ -16,6 +16,8 @@ import {
   TOKEN_METADATA_PROGRAM_ID,
 } from './helpers';
 
+import { fetchCandyMachine, fetchCandyGuard } from '@metaplex-foundation/mpl-candy-machine';
+
 const { SystemProgram } = web3;
 const opts = {
   preflightCommitment: 'processed',
@@ -164,6 +166,13 @@ const CandyMachine = ({ walletAddress }) => {
     });
 
     // このデータをstateに追加してレンダリングする
+    const candyMachineV3 = await fetchCandyMachine(umi, process.env.REACT_APP_CANDY_MACHINE_ID);
+    const candyGuard = await fetchCandyGuard(umi, candyMachineV3.mintAuthority);
+    console.log(`candyMachineV3.publicKey: ${candyMachineV3.publicKey}`);
+    console.log(`candyMachine.data.itemsAvailable: ${candyMachine.data.itemsAvailable}`);
+    console.log(`candyMachineV3.itemsRedeemed: ${candyMachineV3.itemsRedeemed}`);
+    console.log(`candyGuard: ${candyGuard}`);
+
     setCandyMachine({
       id: process.env.REACT_APP_CANDY_MACHINE_ID,
       program,
