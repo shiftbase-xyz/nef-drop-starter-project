@@ -6,16 +6,16 @@ const CountdownTimer = ({ dropDate }) => {
   // State
   const [timerString, setTimerString] = useState('');
 
-  // Our useEffect will run on comppnent load
+  // useEffectはコンポーネントのロード時に実行されます。
   useEffect(() => {
     console.log('Setting interval...');
 
-    // Use setInterval to run this piece of code every second
+    // setIntervalを使用して、このコードの一部を1秒ごとに実行します。
     const interval = setInterval(() => {
       const currentDate = new Date().getTime();
       const distance = dropDate - currentDate;
 
-      // Here it's as easy as doing some time math to get the different properties
+      // 時間の計算をするだけで、さまざまなプロパティを得ることができます。
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor(
         (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
@@ -23,17 +23,17 @@ const CountdownTimer = ({ dropDate }) => {
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      // We have our desired output, set it in state!
+      // 得られた出力結果を設定します。
       setTimerString(`${days}d ${hours}h ${minutes}m ${seconds}s`);
 
-      // If our distance passes zero this means that it's drop time!
+      // distanceが0になったらドロップタイムが来たことを示します。
       if (distance < 0) {
         console.log('Clearing interval...');
         clearInterval(interval);
       }
     }, 1000);
 
-    // Anytime our component unmounts let's clean up our interval
+    // コンポーネントが取り外されたときには、intervalを初期化しましょう。
     return () => {
       if (interval) {
         clearInterval(interval);
