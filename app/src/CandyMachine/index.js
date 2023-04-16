@@ -92,10 +92,10 @@ const CandyMachine = ({ walletAddress }) => {
 
   const getProvider = () => {
     const rpcHost = process.env.REACT_APP_SOLANA_RPC_HOST;
-    // Create a new connection object
+    // connectionオブジェクトを作成
     const connection = new Connection(rpcHost);
 
-    // Create a new Solana provider object
+    // 新しくSolanaのprovider オブジェクトを作成する
     const provider = new Provider(
       connection,
       window.solana,
@@ -105,7 +105,6 @@ const CandyMachine = ({ walletAddress }) => {
     return provider;
   };
 
-  // その1
   // レンダリング関数を作成します
   const renderDropTimer = () => {
     // JavaScriptのDateオブジェクトで現在の日付とDropDateを取得します
@@ -126,15 +125,18 @@ const CandyMachine = ({ walletAddress }) => {
   const getCandyMachineState = async () => {
     const provider = getProvider();
 
-    // Get metadata about your deployed candy machine program
+    //  デプロイされたCandy Machineプログラムのメタデータを取得する
     const idl = await Program.fetchIdl(candyMachineProgram, provider);
 
-    // Create a program that you can call
+    // 呼び出し可能なプログラムを作成する
     const program = new Program(idl, candyMachineProgram, provider);
 
+    // Candy Machineからメタデータを取得する
     const candyMachine = await program.account.candyMachine.fetch(
       process.env.REACT_APP_CANDY_MACHINE_ID,
     );
+
+    //メタデータをすべて解析してログアウトする
     const itemsAvailable = candyMachine.data.itemsAvailable.toNumber();
     const itemsRedeemed = candyMachine.itemsRedeemed.toNumber();
     const itemsRemaining = itemsAvailable - itemsRedeemed;
@@ -146,7 +148,6 @@ const CandyMachine = ({ walletAddress }) => {
       (!candyMachine.data.goLiveDate ||
         candyMachine.data.goLiveDate.toNumber() > new Date().getTime() / 1000);
 
-    // We will be using this later in our UI so let's generate this now
     const goLiveDateTimeString = `${new Date(
       goLiveData * 1000,
     ).toLocaleDateString()} @ ${new Date(
@@ -162,7 +163,7 @@ const CandyMachine = ({ walletAddress }) => {
       presale,
     });
 
-    // Add this data to your state to render
+    // このデータをstateに追加してレンダリングする
     setCandyMachine({
       id: process.env.REACT_APP_CANDY_MACHINE_ID,
       program,
@@ -176,11 +177,11 @@ const CandyMachine = ({ walletAddress }) => {
         isActive:
           (presale ||
             candyMachine.data.goLiveDate.toNumber() <
-              new Date().getTime() / 1000) &&
+            new Date().getTime() / 1000) &&
           (candyMachine.endSettings
             ? candyMachine.endSettings.endSettingType.date
               ? candyMachine.endSettings.number.toNumber() >
-                new Date().getTime() / 1000
+              new Date().getTime() / 1000
               : itemsRedeemed < candyMachine.endSettings.number.toNumber()
             : true),
         isPresale: presale,
@@ -198,19 +199,21 @@ const CandyMachine = ({ walletAddress }) => {
 
   const mintToken = async () => {
     setIsMinting(true);
+    // NFTのアカウントを作成する
     const mint = web3.Keypair.generate();
 
     const userTokenAccountAddress = (
       await getAtaForMint(mint.publicKey, walletAddress.publicKey)
     )[0];
 
+    // Candy MachineがNFTを作成するために必要なすべてのパラメータを設定する
     const userPayingAccountAddress = candyMachine.state.tokenMint
       ? (
-          await getAtaForMint(
-            candyMachine.state.tokenMint,
-            walletAddress.publicKey,
-          )
-        )[0]
+        await getAtaForMint(
+          candyMachine.state.tokenMint,
+          walletAddress.publicKey,
+        )
+      )[0]
       : walletAddress.publicKey;
 
     const candyMachineAddress = candyMachine.id;
@@ -251,6 +254,10 @@ const CandyMachine = ({ walletAddress }) => {
       ),
     ];
 
+    // Candy Machineが以下の条件をチェックする。
+    // - botを防ぐためにキャプチャーを使用しているか(gatekeeper)
+    // - ホワイトリストが設定されているか(whitelistMintSettings)
+    // - ミントがトークンゲートであるか(tokenMint)
     if (candyMachine.state.gatekeeper) {
       remainingAccounts.push({
         pubkey: (
@@ -411,7 +418,7 @@ const CandyMachine = ({ walletAddress }) => {
         )
       ).txs.map((t) => t.txid);
     } catch (e) {
-      console.log(e);
+      console.log(`mintToken error: ${e}`);
     }
     setIsMinting(false);
     return [];
@@ -428,7 +435,7 @@ const CandyMachine = ({ walletAddress }) => {
         <p>{`Items Minted: ${candyMachine.state.itemsRedeemed} / ${candyMachine.state.itemsAvailable}`}</p>
         {/*  プロパティが等しいかチェックします */}
         {candyMachine.state.itemsRedeemed ===
-        candyMachine.state.itemsAvailable ? (
+          candyMachine.state.itemsAvailable ? (
           <p className="sub-text">Sold Out 🙊</p>
         ) : (
           <button
@@ -443,5 +450,4 @@ const CandyMachine = ({ walletAddress }) => {
     )
   );
 };
-
 export default CandyMachine;
