@@ -41,6 +41,7 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
+    "@metaplex-foundation/mpl-candy-machine": "^5.1.0",
     "@metaplex-foundation/umi": "^0.7.0",
     "@metaplex-foundation/umi-bundle-defaults": "^0.7.0",
     "@solana/web3.js": "^1.75.0",
