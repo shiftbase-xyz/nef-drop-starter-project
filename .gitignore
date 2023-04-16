@@ -10,3 +10,6 @@
 /app/.pnp
 /app/.pnp.js
 /app/build
+
+# sugar
+sugar.log
