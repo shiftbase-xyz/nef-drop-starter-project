@@ -26,8 +26,8 @@
     "pre-commit": "npx lint-staged"
   },
   "scripts": {
-    "prettier": "prettier --check --ignore-unknown --no-error-on-unmatched-pattern --ignore-path .prettierignore .",
-    "prettier:fix": "prettier --write --ignore-unknown --no-error-on-unmatched-pattern --ignore-path .prettierignore .",
+    "prettier:check": "prettier --check --ignore-unknown --no-error-on-unmatched-pattern --ignore-path .prettierignore .",
+    "prettier": "prettier --write --ignore-unknown --no-error-on-unmatched-pattern --ignore-path .prettierignore .",
     "lint": "eslint .",
     "lint:fix": "eslint --fix ."
   }
