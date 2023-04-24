@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
-import './CountdownTimer.css';
+// import './CountdownTimer.css';
 
-const CountdownTimer = ({ dropDate }) => {
+type CountdownTimerProps = {
+  dropDate: Date;
+};
+
+const CountdownTimer = (props: CountdownTimerProps) => {
+  const { dropDate } = props;
+
   // State
   const [timerString, setTimerString] = useState('');
 
@@ -13,7 +19,7 @@ const CountdownTimer = ({ dropDate }) => {
     // setIntervalを使用して、このコードの一部を1秒ごとに実行します。
     const interval = setInterval(() => {
       const currentDate = new Date().getTime();
-      const distance = dropDate - currentDate;
+      const distance = dropDate.getTime() - currentDate;
 
       // 時間の計算をするだけで、さまざまなプロパティを得ることができます。
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -43,8 +49,8 @@ const CountdownTimer = ({ dropDate }) => {
 
   return (
     <div className="timer-container">
-      <p className="timer-header">Candy Drop Starting In</p>
-      {timerString && <p className="timer-value">{`⏰ ${timerString}`}</p>}
+      <p className="timer-header"> Candy Drop Starting In </p>
+      {timerString && <p className="timer-value"> {`⏰ ${timerString}`} </p>}
     </div>
   );
 };

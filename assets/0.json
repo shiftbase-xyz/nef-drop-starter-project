@@ -1,6 +1,7 @@
 {
-  "name": "TANJIRO_NFT",
-  "symbol": "",
+  "name": "TANJIRO",
+  "symbol": "KY",
+  "description": "Collection of Kimetsu no Yaiba.",
   "image": "0.png",
   "properties": {
     "files": [
@@ -11,7 +12,7 @@
     ],
     "creators": [
       {
-        "address": "7ZHKrJMoY3C92mZnQur3TEAfdiqPnTyM4suKANsh9uBk",
+        "address": "DA5p4vhRpNNT17Tdi5SWgiNpV4THQMPSztjZikJMeooQ",
         "share": 100
       }
     ]

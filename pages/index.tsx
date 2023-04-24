@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import './App.css';
-import twitterLogo from './assets/twitter-logo.svg';
-import CandyMachine from './CandyMachine';
+import CandyMachine from '@/components/CandyMachine';
+// import './App.css';
+import twitterLogo from '@/public/twitter-logo.svg';
 
 // Constants
 const TWITTER_HANDLE = 'ta_ka_sea0';
