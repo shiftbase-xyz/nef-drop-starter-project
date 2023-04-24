@@ -18,13 +18,15 @@ import {
   transactionBuilder,
 } from '@metaplex-foundation/umi';
 import type { Umi as UmiType } from '@metaplex-foundation/umi';
-// import './CandyMachine.css';
 import { createUmi } from '@metaplex-foundation/umi-bundle-defaults';
 import { walletAdapterIdentity } from '@metaplex-foundation/umi-signer-wallet-adapters';
 import { nftStorageUploader } from '@metaplex-foundation/umi-uploader-nft-storage';
 import { useEffect, useState } from 'react';
 
+import candyMachineStyles from './CandyMachine.module.css';
+
 import CountdownTimer from '@/components/CountdownTimer';
+import styles from '@/styles/Home.module.css';
 
 const ManageNFTAddress = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS as string;
 
@@ -144,14 +146,17 @@ const CandyMachine = (props: CandyMachineProps) => {
 
   return (
     candyMachine && (
-      <div className="machine-container">
+      <div className={candyMachineStyles.machineContainer}>
         {renderDropTimer()}
-        <p>{`Items Minted: ${candyMachine.itemsRedeemed} / ${candyMachine.data.itemsAvailable}`}</p>
+        <p>
+          {' '}
+          {`Items Minted: ${candyMachine.itemsRedeemed} / ${candyMachine.data.itemsAvailable}`}
+        </p>
         {candyMachine.itemsRedeemed === candyMachine.data.itemsAvailable ? (
-          <p className="sub-text">Sold Out 🙊</p>
+          <p className={styles.subText}>Sold Out 🙊</p>
         ) : (
           <button
-            className="cta-button mint-button"
+            className={`${styles.ctaButton} ${styles.mintButton}`}
             onClick={mintToken}
             disabled={isMinting}
           >

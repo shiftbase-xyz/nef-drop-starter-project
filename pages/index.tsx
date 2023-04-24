@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react';
 
 import CandyMachine from '@/components/CandyMachine';
-// import './App.css';
+import styles from '@/styles/Home.module.css';
+
 import twitterLogo from '@/public/twitter-logo.svg';
+import Image from 'next/image'
 
 // Constants
 const TWITTER_HANDLE = 'ta_ka_sea0';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
-const App = () => {
+const Home = () => {
   // State
   const [walletAddress, setWalletAddress] = useState(null);
 
@@ -51,7 +53,7 @@ const App = () => {
 
   const renderNotConnectedContainer = () => (
     <button
-      className="cta-button connect-wallet-button"
+      className={`${styles.ctaButton} ${styles.connectWalletButton}`}
       onClick={connectWallet}
     >
       Connect to Wallet
@@ -67,27 +69,27 @@ const App = () => {
   }, []);
 
   return (
-    <div className="App">
-      <div className="container">
-        <div className="header-container">
-          <p className="header">🍭 Candy Drop</p>
-          <p className="sub-text">NFT drop machine with fair mint</p>
+    <main className={styles.main}>
+      <div className={styles.container}>
+        <div>
+          <p className={styles.header}>🍭 Candy Drop</p>
+          <p className={styles.subText}>NFT drop machine with fair mint</p>
           {/* ウォレットアドレスを持っていない場合にのみ表示する条件を追加する */}
           {!walletAddress && renderNotConnectedContainer()}
         </div>
         {/* Check for walletAddress and then pass in walletAddress */}
         {walletAddress && <CandyMachine walletAddress={window.solana} />}
-        <div className="footer-container">
-          <img alt="Twitter Logo" className="twitter-logo" src={twitterLogo} />
+        <div className={styles.footerContainer}>
+          <Image alt="Twitter Logo" className={styles.twitterLogo} src={twitterLogo} />
           <a
-            className="footer-text"
+            className={styles.footerText}
             href={TWITTER_LINK}
             target="_blank"
             rel="noreferrer"
           >{`built on @${TWITTER_HANDLE}`}</a>
         </div>
       </div>
-    </div>
+    </main>
   );
 };
-export default App;
+export default Home;

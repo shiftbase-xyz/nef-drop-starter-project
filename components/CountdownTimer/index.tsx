@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-// import './CountdownTimer.css';
+import CountdownTimerStyles from './CountdownTimer.module.css';
 
 type CountdownTimerProps = {
   dropDate: Date;
@@ -48,10 +48,10 @@ const CountdownTimer = (props: CountdownTimerProps) => {
   }, []);
 
   return (
-    <div className="timer-container">
-      <p className="timer-header"> Candy Drop Starting In </p>
-      {timerString && <p className="timer-value"> {`⏰ ${timerString}`} </p>}
-    </div>
+    <div className={CountdownTimerStyles.timerContainer}>
+      <p className={CountdownTimerStyles.timerHeader}> Candy Drop Starting In </p>
+      {timerString && <p className={CountdownTimerStyles.timerValue}> {`⏰ ${timerString}`} </p>}
+    </div >
   );
 };
 
