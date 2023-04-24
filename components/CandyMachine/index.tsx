@@ -28,8 +28,6 @@ import candyMachineStyles from './CandyMachine.module.css';
 import CountdownTimer from '@/components/CountdownTimer';
 import styles from '@/styles/Home.module.css';
 
-const ManageNFTAddress = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS as string;
-
 type CandyMachineProps = {
   walletAddress: any;
 };
@@ -55,23 +53,23 @@ const CandyMachine = (props: CandyMachineProps) => {
     const currentDate = new Date();
     const dropDate = new Date(Number(startDate.value.date) * 1000);
 
-    // If the current date is before the drop date, render the countdown component
+    // 現在の日付がドロップ日より前の場合、カウントダウンコンポーネントをレンダリングします。
     if (currentDate < dropDate) {
       console.log('Before drop date!');
       return <CountdownTimer dropDate={dropDate} />;
     }
 
-    // If the current date is after the drop date, render the drop date
+    // 現在の日付がドロップ日よりも後の場合、ドロップ日をレンダリングします。
     return <p>{`Drop Date: ${dropDate}`}</p>;
   };
 
   const getCandyMachineState = async () => {
     try {
-      // Use the RPC endpoint of your choice.
       if (
         process.env.NEXT_PUBLIC_SOLANA_RPC_HOST &&
         process.env.NEXT_PUBLIC_CANDY_MACHINE_ID
       ) {
+        // Candy Machineと対話するためのUmiインスタンスを作成し、必要なプラグインを追加します。
         const umi = createUmi(process.env.NEXT_PUBLIC_SOLANA_RPC_HOST)
           .use(walletAdapterIdentity(walletAddress))
           .use(nftStorageUploader())
@@ -81,29 +79,17 @@ const CandyMachine = (props: CandyMachineProps) => {
           umi,
           publicKey(process.env.NEXT_PUBLIC_CANDY_MACHINE_ID),
         );
-        // Check
-        console.log(
-          `candyMachine.mintAuthority: ${JSON.stringify(
-            candyMachine.mintAuthority,
-          )}`,
-        );
-        console.log(
-          `candyMachine.publicKey: ${candyMachine.publicKey.toString()}`,
-        );
-        console.log(
-          `candyMachine.items: ${JSON.stringify(candyMachine.items)}`,
-        );
-        console.log(
-          `candyMachine.data.itemsAvailable: ${candyMachine.data.itemsAvailable}`,
-        );
-        console.log(
-          `candyMachine.itemsRedeemed: ${candyMachine.itemsRedeemed}`,
-        );
-
         const candyGuard = await safeFetchCandyGuard(
           umi,
           candyMachine.mintAuthority,
         );
+
+        console.log(`items: ${JSON.stringify(candyMachine.items)}`);
+        console.log(`itemsAvailable: ${candyMachine.data.itemsAvailable}`);
+        console.log(`itemsRedeemed: ${candyMachine.itemsRedeemed}`);
+        if (candyGuard?.guards.startDate.__option !== 'None') {
+          console.log(`startDate: ${candyGuard?.guards.startDate.value.date}`);
+        }
 
         setUmi(umi);
         setCandyMachine(candyMachine);
@@ -115,6 +101,7 @@ const CandyMachine = (props: CandyMachineProps) => {
   };
 
   const mintToken = async () => {
+    setIsMinting(true);
     try {
       if (umi === undefined) {
         throw new Error('Umi context was not initialized.');
@@ -123,6 +110,7 @@ const CandyMachine = (props: CandyMachineProps) => {
         throw new Error('Candy Machine was not initialized.');
       }
       const nftSigner = generateSigner(umi);
+      // トランザクションの構築と送信を行います。
       await transactionBuilder()
         .add(setComputeUnitLimit(umi, { units: 600_000 }))
         .add(
@@ -137,6 +125,8 @@ const CandyMachine = (props: CandyMachineProps) => {
         .sendAndConfirm(umi);
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsMinting(false);
     }
   };
 
