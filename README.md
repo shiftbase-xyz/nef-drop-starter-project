@@ -1,11 +1,26 @@
-# Solana NFT Drop Project
+# Solana NFT Drop Completed
 
 ![](https://i.imgur.com/2vEkSJ2.png)
 
-このコースを始めるには、下記のステップを実行してください。
+## 実行方法
+1. **本リポジトリのクローン**
 
-1. あなたの Github アカウントにこのレポジトリをフォークしましょう。
-2. クローンしたレポジトリをあなたのローカル環境にダウンロードしましょう。
-3. ターミナルを開き、ディレクトリのルートで `npm install` を実行します。
-4. `npm run start` を実行してプロジェクトを開始します。
-5. コーディングを始めましょう。
+```bash
+git clone -b complete git@github.com:unchain-tech/Solana-NFT-Drop.git
+```
+
+2. **パッケージのインストール**
+
+```bash
+yarn install
+```
+
+3. **Candy Machine の構築**
+
+4. **開発サーバーの起動**
+
+```bash
+yarn dev
+```
+
+ターミナル上に表示された URL にアクセスしましょう。
