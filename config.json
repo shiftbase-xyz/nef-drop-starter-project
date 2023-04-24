@@ -1,7 +1,7 @@
 {
   "tokenStandard": "nft",
   "number": 3,
-  "symbol": "",
+  "symbol": "KY",
   "sellerFeeBasisPoints": 500,
   "isMutable": true,
   "isSequential": false,
@@ -18,5 +18,11 @@
   "shdwStorageAccount": null,
   "pinataConfig": null,
   "hiddenSettings": null,
-  "guards": null
+  "guards": {
+    "default": {
+      "startDate": {
+        "date": "2023-01-01T00:00:00Z"
+      }
+    }
+  }
 }

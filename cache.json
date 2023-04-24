@@ -1,41 +1,41 @@
 {
   "program": {
-    "candyMachine": "FeNdK4WuJ5mj9X84sq3J8GbRrX55qSCiUmQTxmrq5wCE",
-    "candyGuard": "",
-    "candyMachineCreator": "HNfCf2fs3REamzNSUgsrLXECMJKZpru7MVs1TdsAeJaC",
-    "collectionMint": "G8qkq6X8N4YhV77XCGXfDM3CEpiahmVMYxtS1nX9F28n"
+    "candyMachine": "BHKx6YgWrKmP9aHzoM2MCCnfnRy1LaD9Qs2BCdXD4jxD",
+    "candyGuard": "5vDpE73Gh7o9xNom5ADunXKmi8vEhDqZ1aDqKcbNfKtd",
+    "candyMachineCreator": "79PyysJj2LH3JHCT47socAoS5od9aLwC6vNSPx5bnrgs",
+    "collectionMint": "6TjEfjWpvSXh4EUMmAFUmgJnQMDpXG4QetxCH7F27Lz9"
   },
   "items": {
     "-1": {
       "name": "KIMETSU Collection",
       "image_hash": "c7ddd869ec829f25b1c1ea93afd77f1ebe78058733217c0844e5f1ef0abd41f9",
-      "image_link": "https://arweave.net/GePEotD0S4yNiHeqOronKYzk1CIff4vkvdqjT9q7aI8?ext=png",
-      "metadata_hash": "9b3eddb7b257c1f949db3547175980962cc866cb7985ee716e2f0f18ec699a62",
-      "metadata_link": "https://arweave.net/Ckhz7h8VuLd7PzpkoL7vpxVedBB2pK_YyVeOaIdZuwg",
+      "image_link": "https://arweave.net/b_NeHJ0a1iSFBb44Ki-42v_ObiCbtpPohkLw6Vfi3-Y?ext=png",
+      "metadata_hash": "a28346d284c5bf2a7a4b4c317997724d24d48c1ad5309e88c8fc8b45e7010209",
+      "metadata_link": "https://arweave.net/5Cf6CGPzXj5Hc2zWsE8Vf_dPdpgUaEfnPx1POBjDsao",
       "onChain": true
     },
     "0": {
-      "name": "TANJIRO_NFT",
+      "name": "TANJIRO",
       "image_hash": "dba4f36446eaab02fe3f9949a59e0588f79428255832139271aa8e1cac860dde",
-      "image_link": "https://arweave.net/HfkaQYDSvMekdcU4OPMMmXqcBrFqsEGJ6yRrAA7_alo?ext=png",
-      "metadata_hash": "469af26a54b1837b0e4b5e5019358602db8895bd39d1378e4810287ffd125c6e",
-      "metadata_link": "https://arweave.net/8UdRKkdcgeVwi-AtqE6yJBuxJw4Ly1rchV6QHdEgClk",
+      "image_link": "https://arweave.net/WqSG3clFJpGNibIvngs-QFzPnhJBowSLn76y_nxaRns?ext=png",
+      "metadata_hash": "4c443b992d2fa2ce090f10fbbda76c186f18527726020838f1d28f7e16209c1f",
+      "metadata_link": "https://arweave.net/jAWQPS85IfKnjyiE-GX5zs12y29Psvl4iFAuEwYQos0",
       "onChain": true
     },
     "1": {
-      "name": "ZENITSU_NFT",
+      "name": "ZENITSU",
       "image_hash": "61ef0b976b945ced3b06c31c7e4f871ead13478f828f2e29065627a28c4789fd",
-      "image_link": "https://arweave.net/HqKgZdF0l64pEKKKV-_KIbVB219rnZWo7ebt_rFiqt8?ext=png",
-      "metadata_hash": "37c4e74bd78c563c80233f4f37fbd860f6c9ac2d2bd0b15b59d13e158608ed8c",
-      "metadata_link": "https://arweave.net/Ofwj_jiqS3aKU3vEfP5PVoJczAJT3F7R0Qxe9eDQrYA",
+      "image_link": "https://arweave.net/P8ZJRNTPtMk_vm-HhhmB97VXWNSU5kXPIk3C9izQcIU?ext=png",
+      "metadata_hash": "93eeeecc71b7b7b7e0f7640e2b6b7645b97c1c5b3718dff2479b5048ebf21417",
+      "metadata_link": "https://arweave.net/V46kyjphkoeiH6ZlBjhOWIFTdWBATdjLPKDRfTBu2bg",
       "onChain": true
     },
     "2": {
-      "name": "INOSUKE_NFT",
+      "name": "INOSUKE",
       "image_hash": "579032d03e47ee5d237d49715d9586ea82e2e2ae9195a3ea1db6f6b161cb6816",
-      "image_link": "https://arweave.net/pjIBWIC9J6IVYpdZiSGbJQMZCshbUyFIQOtUbX0wNF8?ext=png",
-      "metadata_hash": "d68ecb8987cd85b725c785b01330b507631a74e3b54363197c4dc9330bb9033a",
-      "metadata_link": "https://arweave.net/4dlOddLi_UAtWMJgZ_1BBLQvEnjZcs1P_lVBtp4CI1g",
+      "image_link": "https://arweave.net/F6n1WhAUK66vz5HEIy2oADvKpDUAbYUf5o6Ne31go3Q?ext=png",
+      "metadata_hash": "435e9df840b755736bdea02c267e29acd1ef078b4f530ed2347a45c7ad5d2cee",
+      "metadata_link": "https://arweave.net/hsOlTj2r_a3NRvEgHTWiEwDcUQIl2OUCmN1MMj4JJ2U",
       "onChain": true
     }
   }

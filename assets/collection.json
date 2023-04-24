@@ -1,7 +1,7 @@
 {
   "name": "KIMETSU Collection",
-  "symbol": "",
-  "description": ".",
+  "symbol": "KY",
+  "description": "Collection of Kimetsu no Yaiba.",
   "image": "collection.png",
   "attributes": [],
   "properties": {
@@ -9,6 +9,12 @@
       {
         "uri": "collection.png",
         "type": "image/png"
+      }
+    ],
+    "creators": [
+      {
+        "address": "DA5p4vhRpNNT17Tdi5SWgiNpV4THQMPSztjZikJMeooQ",
+        "share": 100
       }
     ]
   }
