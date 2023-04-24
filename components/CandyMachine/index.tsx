@@ -80,11 +80,23 @@ const CandyMachine = (props: CandyMachineProps) => {
           publicKey(process.env.NEXT_PUBLIC_CANDY_MACHINE_ID),
         );
         // Check
-        console.log(`candyMachine.mintAuthority: ${JSON.stringify(candyMachine.mintAuthority)}`);
-        console.log(`candyMachine.publicKey: ${candyMachine.publicKey.toString()}`);
-        console.log(`candyMachine.items: ${JSON.stringify(candyMachine.items)}`);
-        console.log(`candyMachine.data.itemsAvailable: ${candyMachine.data.itemsAvailable}`);
-        console.log(`candyMachine.itemsRedeemed: ${candyMachine.itemsRedeemed}`);
+        console.log(
+          `candyMachine.mintAuthority: ${JSON.stringify(
+            candyMachine.mintAuthority,
+          )}`,
+        );
+        console.log(
+          `candyMachine.publicKey: ${candyMachine.publicKey.toString()}`,
+        );
+        console.log(
+          `candyMachine.items: ${JSON.stringify(candyMachine.items)}`,
+        );
+        console.log(
+          `candyMachine.data.itemsAvailable: ${candyMachine.data.itemsAvailable}`,
+        );
+        console.log(
+          `candyMachine.itemsRedeemed: ${candyMachine.itemsRedeemed}`,
+        );
 
         const candyGuard = await safeFetchCandyGuard(
           umi,

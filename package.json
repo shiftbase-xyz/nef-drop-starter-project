@@ -1,34 +1,47 @@
 {
   "name": "Solana-NFT-Drop",
-  "version": "1.0.0",
-  "description": "Prototype of Solana NFT Drop",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/unchain-tech/Solana-NFT-Drop.git"
-  },
-  "license": "MIT",
+  "version": "0.1.0",
   "private": true,
-  "devDependencies": {
-    "@trivago/prettier-plugin-sort-imports": "^4.1.1",
-    "eslint": "^8.37.0",
-    "eslint-config-prettier": "^8.8.0",
-    "eslint-config-standard": "^17.0.0",
-    "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-n": "^15.7.0",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-promise": "^6.1.1",
-    "eslint-plugin-react": "^7.32.2",
-    "lint-staged": "^13.2.0",
+  "dependencies": {
+    "@next/font": "^13.3.0",
+    "@types/node": "18.15.11",
+    "@types/react": "18.0.35",
+    "@types/react-dom": "18.0.11",
+    "eslint": "8.38.0",
+    "eslint-config-next": "13.3.0",
+    "next": "13.3.0",
     "prettier": "^2.8.7",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "typescript": "5.0.4"
+  },
+  "devDependencies": {
+    "@metaplex-foundation/mpl-candy-machine": "6.0.0-alpha.6",
+    "@metaplex-foundation/mpl-essentials": "^0.5.4",
+    "@metaplex-foundation/mpl-token-metadata": "3.0.0-alpha.11",
+    "@metaplex-foundation/umi": "^0.7.0",
+    "@metaplex-foundation/umi-bundle-defaults": "^0.6.0",
+    "@metaplex-foundation/umi-signer-wallet-adapters": "^0.7.0",
+    "@metaplex-foundation/umi-uploader-nft-storage": "^0.7.0",
+    "@solana/wallet-adapter-base": "^0.9.22",
+    "@solana/wallet-adapter-react": "^0.15.32",
+    "@solana/wallet-adapter-react-ui": "^0.9.31",
+    "@solana/wallet-adapter-wallets": "^0.19.16",
+    "@solana/web3.js": "^1.75.0",
+    "@trivago/prettier-plugin-sort-imports": "^4.1.1",
+    "lint-staged": "^13.2.0",
     "simple-git-hooks": "^2.8.1"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"
   },
   "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
     "prettier:check": "prettier --check --ignore-unknown --no-error-on-unmatched-pattern --ignore-path .prettierignore .",
-    "prettier": "prettier --write --ignore-unknown --no-error-on-unmatched-pattern --ignore-path .prettierignore .",
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix ."
+    "prettier": "prettier --write --ignore-unknown --no-error-on-unmatched-pattern --ignore-path .prettierignore ."
   }
 }
