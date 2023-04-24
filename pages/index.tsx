@@ -1,10 +1,9 @@
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 import CandyMachine from '@/components/CandyMachine';
-import styles from '@/styles/Home.module.css';
-
 import twitterLogo from '@/public/twitter-logo.svg';
-import Image from 'next/image'
+import styles from '@/styles/Home.module.css';
 
 // Constants
 const TWITTER_HANDLE = 'ta_ka_sea0';
@@ -80,7 +79,11 @@ const Home = () => {
         {/* Check for walletAddress and then pass in walletAddress */}
         {walletAddress && <CandyMachine walletAddress={window.solana} />}
         <div className={styles.footerContainer}>
-          <Image alt="Twitter Logo" className={styles.twitterLogo} src={twitterLogo} />
+          <Image
+            alt="Twitter Logo"
+            className={styles.twitterLogo}
+            src={twitterLogo}
+          />
           <a
             className={styles.footerText}
             href={TWITTER_LINK}

@@ -49,9 +49,17 @@ const CountdownTimer = (props: CountdownTimerProps) => {
 
   return (
     <div className={CountdownTimerStyles.timerContainer}>
-      <p className={CountdownTimerStyles.timerHeader}> Candy Drop Starting In </p>
-      {timerString && <p className={CountdownTimerStyles.timerValue}> {`⏰ ${timerString}`} </p>}
-    </div >
+      <p className={CountdownTimerStyles.timerHeader}>
+        {' '}
+        Candy Drop Starting In{' '}
+      </p>
+      {timerString && (
+        <p className={CountdownTimerStyles.timerValue}>
+          {' '}
+          {`⏰ ${timerString}`}{' '}
+        </p>
+      )}
+    </div>
   );
 };
 
