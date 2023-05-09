@@ -14,10 +14,8 @@ const CountdownTimer = (props: CountdownTimerProps) => {
 
   // useEffectはコンポーネントのロード時に実行されます。
   useEffect(() => {
-    console.log('Setting interval...');
-
     // setIntervalを使用して、このコードの一部を1秒ごとに実行します。
-    const interval = setInterval(() => {
+    const intervalId = setInterval(() => {
       const currentDate = new Date().getTime();
       const distance = dropDate.getTime() - currentDate;
 
@@ -34,15 +32,16 @@ const CountdownTimer = (props: CountdownTimerProps) => {
 
       // distanceが0になったらドロップタイムが来たことを示します。
       if (distance < 0) {
-        console.log('Clearing interval...');
-        clearInterval(interval);
+        clearInterval(intervalId);
+        setTimerString('');
       }
     }, 1000);
 
     // コンポーネントが取り外されたときには、intervalを初期化しましょう。
     return () => {
-      if (interval) {
-        clearInterval(interval);
+      if (intervalId) {
+        clearInterval(intervalId);
+        setTimerString('');
       }
     };
   }, []);
