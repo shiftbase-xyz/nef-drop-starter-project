@@ -19,20 +19,19 @@ const Home = () => {
     try {
       const { solana } = window;
 
-      if (solana) {
-        if (solana.isPhantom) {
-          console.log('Phantom wallet found!');
-          const response = await solana.connect({ onlyIfTrusted: true });
-          console.log(
-            'Connected with Public Key:',
-            response.publicKey.toString(),
-          );
+      if (solana && solana.isPhantom) {
+        console.log('Phantom wallet found!');
 
-          /*
-           * ユーザーの公開鍵を後から使える状態にします。
-           */
-          setWalletAddress(response.publicKey.toString());
-        }
+        const response = await solana.connect({ onlyIfTrusted: true });
+        console.log(
+          'Connected with Public Key:',
+          response.publicKey.toString(),
+        );
+
+        /*
+         * ユーザーの公開鍵を後から使える状態にします。
+         */
+        setWalletAddress(response.publicKey.toString());
       } else {
         alert('Solana object not found! Get a Phantom Wallet 👻');
       }
@@ -60,12 +59,19 @@ const Home = () => {
     </button>
   );
 
+  // useEffect(() => {
+  //   const onLoad = async () => {
+  //     await checkIfWalletIsConnected();
+  //   };
+  //   window.addEventListener('load', onLoad);
+  //   return () => window.removeEventListener('load', onLoad);
+  // }, []);
+
   useEffect(() => {
     const onLoad = async () => {
       await checkIfWalletIsConnected();
     };
-    window.addEventListener('load', onLoad);
-    return () => window.removeEventListener('load', onLoad);
+    onLoad();
   }, []);
 
   return (
@@ -85,7 +91,7 @@ const Home = () => {
             {!walletAddress && renderNotConnectedContainer()}
           </div>
           {/* Check for walletAddress and then pass in walletAddress */}
-          {walletAddress && <CandyMachine walletAddress={window.solana} />}
+          {/* {walletAddress && <CandyMachine walletAddress={window.solana} />} */}
           <div className={styles.footerContainer}>
             <Image
               alt="Twitter Logo"
@@ -104,4 +110,5 @@ const Home = () => {
     </>
   );
 };
+
 export default Home;
