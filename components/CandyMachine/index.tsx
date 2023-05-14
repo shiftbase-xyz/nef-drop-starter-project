@@ -42,28 +42,6 @@ const CandyMachine = (props: CandyMachineProps) => {
   const [candyGuard, setCandyGuard] = useState<CandyGuardType | null>(null);
   const [isMinting, setIsMinting] = useState(false);
 
-  const renderDropTimer = () => {
-    if (candyGuard?.guards.startDate === undefined) {
-      return;
-    }
-
-    const startDate: Option<StartDateType> = candyGuard.guards.startDate;
-    if (startDate.__option === 'None') {
-      return;
-    }
-    const currentDate = new Date();
-    const dropDate = new Date(Number(startDate.value.date) * 1000);
-
-    // 現在の日付がドロップ日より前の場合、カウントダウンコンポーネントをレンダリングします。
-    if (currentDate < dropDate) {
-      console.log('Before drop date!');
-      return <CountdownTimer dropDate={dropDate} />;
-    }
-
-    // 現在の日付がドロップ日よりも後の場合、ドロップ日をレンダリングします。
-    return <p>{`Drop Date: ${dropDate}`}</p>;
-  };
-
   const getCandyMachineState = async () => {
     try {
       if (
@@ -147,15 +125,28 @@ const CandyMachine = (props: CandyMachineProps) => {
     }
   };
 
-  useEffect(() => {
-    getCandyMachineState();
-  }, []);
+  const renderDropField = (
+    candyMachine: CandyMachineType,
+    candyGuard: CandyGuardType,
+  ) => {
+    const startDate: Option<StartDateType> = candyGuard.guards.startDate;
+    if (startDate.__option === 'None') {
+      return;
+    }
 
-  return (
-    candyMachine &&
-    candyGuard && (
-      <div className={candyMachineStyles.machineContainer}>
-        {renderDropTimer()}
+    // JavaScriptのDateオブジェクトで現在の日付とDropDateを取得します。
+    const currentDate = new Date();
+    const dropDate = new Date(Number(startDate.value.date) * 1000);
+
+    // 現在の日付がドロップ日よりも前の場合、CountdownTimerコンポーネントをレンダリングします。
+    if (currentDate < dropDate) {
+      return <CountdownTimer dropDate={dropDate} />;
+    }
+
+    // 現在の日付がドロップ日よりも後の場合、ドロップ日をレンダリングします。
+    return (
+      <>
+        <p>{`Drop Date: ${dropDate}`}</p>
         <p>
           {' '}
           {`Items Minted: ${candyMachine.itemsRedeemed} / ${candyMachine.data.itemsAvailable}`}
@@ -171,6 +162,19 @@ const CandyMachine = (props: CandyMachineProps) => {
             Mint NFT
           </button>
         )}
+      </>
+    );
+  };
+
+  useEffect(() => {
+    getCandyMachineState();
+  }, []);
+
+  return (
+    candyMachine &&
+    candyGuard && (
+      <div className={candyMachineStyles.machineContainer}>
+        {renderDropField(candyMachine, candyGuard)}
       </div>
     )
   );
