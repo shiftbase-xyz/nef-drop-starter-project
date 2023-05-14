@@ -20,6 +20,10 @@
   "hiddenSettings": null,
   "guards": {
     "default": {
+      "solPayment": {
+        "value": 0.1,
+        "destination": "DA5p4vhRpNNT17Tdi5SWgiNpV4THQMPSztjZikJMeooQ"
+      },
       "startDate": {
         "date": "2023-01-01T00:00:00Z"
       }

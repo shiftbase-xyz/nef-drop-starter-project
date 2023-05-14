@@ -15,6 +15,7 @@ import {
   generateSigner,
   Option,
   publicKey,
+  some,
   transactionBuilder,
 } from '@metaplex-foundation/umi';
 import type { Umi as UmiType } from '@metaplex-foundation/umi';
@@ -109,7 +110,16 @@ const CandyMachine = (props: CandyMachineProps) => {
       if (candyMachine === undefined) {
         throw new Error('Candy Machine was not initialized.');
       }
+      if (candyGuard === null) {
+        throw new Error('Candy Guard was not initialized.');
+      }
+      if (candyGuard.guards.solPayment.__option === 'None') {
+        throw new Error('Destination of solPayment is not set..');
+      }
+
       const nftSigner = generateSigner(umi);
+      const destination = candyGuard.guards.solPayment.value.destination;
+
       // トランザクションの構築と送信を行います。
       await transactionBuilder()
         .add(setComputeUnitLimit(umi, { units: 600_000 }))
@@ -120,6 +130,9 @@ const CandyMachine = (props: CandyMachineProps) => {
             nftMint: nftSigner,
             collectionMint: candyMachine.collectionMint,
             collectionUpdateAuthority: candyMachine.authority,
+            mintArgs: {
+              solPayment: some({ destination: destination }),
+            },
           }),
         )
         .sendAndConfirm(umi);
