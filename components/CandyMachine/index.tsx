@@ -68,6 +68,11 @@ const CandyMachine = (props: CandyMachineProps) => {
         console.log(`itemsRedeemed: ${candyMachine.itemsRedeemed}`);
         if (candyGuard?.guards.startDate.__option !== 'None') {
           console.log(`startDate: ${candyGuard?.guards.startDate.value.date}`);
+
+          const startDateString = new Date(
+            Number(candyGuard?.guards.startDate.value.date) * 1000,
+          );
+          console.log(`startDateString: ${startDateString}`);
         }
 
         setUmi(umi);
