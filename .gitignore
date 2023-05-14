@@ -37,10 +37,10 @@ next-env.d.ts
 
 # sugar
 cache.json
-# config.json
-sugar.log
+#config.json
+**/sugar.log
 
 # NFT
-# assets
+#/assets/
 
 /test-ledger/
