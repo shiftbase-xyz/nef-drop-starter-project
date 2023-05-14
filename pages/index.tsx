@@ -59,14 +59,6 @@ const Home = () => {
     </button>
   );
 
-  // useEffect(() => {
-  //   const onLoad = async () => {
-  //     await checkIfWalletIsConnected();
-  //   };
-  //   window.addEventListener('load', onLoad);
-  //   return () => window.removeEventListener('load', onLoad);
-  // }, []);
-
   useEffect(() => {
     const onLoad = async () => {
       await checkIfWalletIsConnected();
@@ -90,8 +82,8 @@ const Home = () => {
             {/* ウォレットアドレスを持っていない場合にのみ表示する条件を追加する */}
             {!walletAddress && renderNotConnectedContainer()}
           </div>
-          {/* Check for walletAddress and then pass in walletAddress */}
-          {/* {walletAddress && <CandyMachine walletAddress={window.solana} />} */}
+          {/* ウォレットアドレスがステートに保存されていたら、CandyMachineコンポーネントに渡す */}
+          {walletAddress && <CandyMachine walletAddress={window.solana} />}
           <div className={styles.footerContainer}>
             <Image
               alt="Twitter Logo"
