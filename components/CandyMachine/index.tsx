@@ -101,17 +101,14 @@ const CandyMachine = (props: CandyMachineProps) => {
     }
   };
 
-  const mintToken = async () => {
+  const mintToken = async (
+    candyMachine: CandyMachineType,
+    candyGuard: CandyGuardType,
+  ) => {
     setIsMinting(true);
     try {
       if (umi === undefined) {
         throw new Error('Umi context was not initialized.');
-      }
-      if (candyMachine === undefined) {
-        throw new Error('Candy Machine was not initialized.');
-      }
-      if (candyGuard === null) {
-        throw new Error('Candy Guard was not initialized.');
       }
       if (candyGuard.guards.solPayment.__option === 'None') {
         throw new Error('Destination of solPayment is not set..');
@@ -120,22 +117,29 @@ const CandyMachine = (props: CandyMachineProps) => {
       const nftSigner = generateSigner(umi);
       const destination = candyGuard.guards.solPayment.value.destination;
 
-      // トランザクションの構築と送信を行います。
-      await transactionBuilder()
+      // トランザクションの構築を行います。
+      const transaction = transactionBuilder()
         .add(setComputeUnitLimit(umi, { units: 600_000 }))
         .add(
           mintV2(umi, {
+            candyGuard: candyGuard.publicKey,
             candyMachine: candyMachine.publicKey,
-            candyGuard: candyGuard?.publicKey,
-            nftMint: nftSigner,
             collectionMint: candyMachine.collectionMint,
             collectionUpdateAuthority: candyMachine.authority,
             mintArgs: {
               solPayment: some({ destination: destination }),
             },
+            nftMint: nftSigner,
           }),
-        )
-        .sendAndConfirm(umi);
+        );
+
+      // トランザクションを送信して、ネットワークによる確認を待ちます。
+      await transaction.sendAndConfirm(umi).then((response) => {
+        const transactionResult = response.result.value;
+        if (transactionResult.err) {
+          console.error(`Failed mint: ${transactionResult.err}`);
+        }
+      });
     } catch (error) {
       console.error(error);
     } finally {
@@ -148,7 +152,8 @@ const CandyMachine = (props: CandyMachineProps) => {
   }, []);
 
   return (
-    candyMachine && (
+    candyMachine &&
+    candyGuard && (
       <div className={candyMachineStyles.machineContainer}>
         {renderDropTimer()}
         <p>
@@ -160,7 +165,7 @@ const CandyMachine = (props: CandyMachineProps) => {
         ) : (
           <button
             className={`${styles.ctaButton} ${styles.mintButton}`}
-            onClick={mintToken}
+            onClick={() => mintToken(candyMachine, candyGuard)}
             disabled={isMinting}
           >
             Mint NFT
