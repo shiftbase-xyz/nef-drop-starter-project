@@ -2,7 +2,7 @@ import '@testing-library/jest-dom';
 import { act, render, screen } from '@testing-library/react';
 import { describe } from 'node:test';
 
-import CountdownTimer from '.';
+import CountdownTimer from '../components/CountdownTimer';
 
 beforeEach(() => {
   // タイマー関数をモックする
