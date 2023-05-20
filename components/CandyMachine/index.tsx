@@ -1,12 +1,10 @@
 import {
+  CandyGuard as CandyGuardType,
+  CandyMachine as CandyMachineType,
   fetchCandyMachine,
   mintV2,
   mplCandyMachine,
   safeFetchCandyGuard,
-} from '@metaplex-foundation/mpl-candy-machine';
-import type {
-  CandyGuard as CandyGuardType,
-  CandyMachine as CandyMachineType,
   StartDate as StartDateType,
 } from '@metaplex-foundation/mpl-candy-machine';
 import { setComputeUnitLimit } from '@metaplex-foundation/mpl-essentials';
@@ -17,8 +15,8 @@ import {
   publicKey,
   some,
   transactionBuilder,
+  Umi as UmiType,
 } from '@metaplex-foundation/umi';
-import type { Umi as UmiType } from '@metaplex-foundation/umi';
 import { createUmi } from '@metaplex-foundation/umi-bundle-defaults';
 import { walletAdapterIdentity } from '@metaplex-foundation/umi-signer-wallet-adapters';
 import { nftStorageUploader } from '@metaplex-foundation/umi-uploader-nft-storage';
@@ -63,17 +61,18 @@ const CandyMachine = (props: CandyMachineProps) => {
           candyMachine.mintAuthority,
         );
 
-        console.log(`items: ${JSON.stringify(candyMachine.items)}`);
-        console.log(`itemsAvailable: ${candyMachine.data.itemsAvailable}`);
-        console.log(`itemsRedeemed: ${candyMachine.itemsRedeemed}`);
-        if (candyGuard?.guards.startDate.__option !== 'None') {
-          console.log(`startDate: ${candyGuard?.guards.startDate.value.date}`);
+        /** テスト出力 */
+        // console.log(`items: ${JSON.stringify(candyMachine.items)}`);
+        // console.log(`itemsAvailable: ${candyMachine.data.itemsAvailable}`);
+        // console.log(`itemsRedeemed: ${candyMachine.itemsRedeemed}`);
+        // if (candyGuard?.guards.startDate.__option !== 'None') {
+        //   console.log(`startDate: ${candyGuard?.guards.startDate.value.date}`);
 
-          const startDateString = new Date(
-            Number(candyGuard?.guards.startDate.value.date) * 1000,
-          );
-          console.log(`startDateString: ${startDateString}`);
-        }
+        //   const startDateString = new Date(
+        //     Number(candyGuard?.guards.startDate.value.date) * 1000,
+        //   );
+        //   console.log(`startDateString: ${startDateString}`);
+        // }
 
         setUmi(umi);
         setCandyMachine(candyMachine);
@@ -94,7 +93,7 @@ const CandyMachine = (props: CandyMachineProps) => {
         throw new Error('Umi context was not initialized.');
       }
       if (candyGuard.guards.solPayment.__option === 'None') {
-        throw new Error('Destination of solPayment is not set..');
+        throw new Error('Destination of solPayment is not set.');
       }
 
       const nftSigner = generateSigner(umi);
@@ -120,7 +119,7 @@ const CandyMachine = (props: CandyMachineProps) => {
       await transaction.sendAndConfirm(umi).then((response) => {
         const transactionResult = response.result.value;
         if (transactionResult.err) {
-          console.error(`Failed mint: ${transactionResult.err}`);
+          throw new Error(`Failed mint: ${transactionResult.err}`);
         }
       });
     } catch (error) {
@@ -175,14 +174,11 @@ const CandyMachine = (props: CandyMachineProps) => {
     getCandyMachineState();
   }, []);
 
-  return (
-    candyMachine &&
-    candyGuard && (
-      <div className={candyMachineStyles.machineContainer}>
-        {renderDropField(candyMachine, candyGuard)}
-      </div>
-    )
-  );
+  return candyMachine && candyGuard ? (
+    <div className={candyMachineStyles.machineContainer}>
+      {renderDropField(candyMachine, candyGuard)}
+    </div>
+  ) : null;
 };
 
 export default CandyMachine;
