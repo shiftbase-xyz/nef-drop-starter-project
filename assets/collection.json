@@ -1,12 +1,13 @@
 {
-  "name": "INOSUKE",
+  "name": "KIMETSU Collection",
   "symbol": "KY",
   "description": "Collection of Kimetsu no Yaiba.",
-  "image": "2.png",
+  "image": "collection.png",
+  "attributes": [],
   "properties": {
     "files": [
       {
-        "uri": "2.png",
+        "uri": "collection.png",
         "type": "image/png"
       }
     ],

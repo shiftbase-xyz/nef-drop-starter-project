@@ -1,18 +1,32 @@
 {
-	"price": 0.1,
-	"number": 3,
-	"gatekeeper": null,
-	"solTreasuryAccount": "7ZHKrJMoY3C92mZnQur3TEAfdiqPnTyM4suKANsh9uBk",
-	"splTokenAccount": null,
-	"splToken": null,
-	"goLiveDate": "25 Jan 2022 00:00:00 GMT",
-	"endSettings": null,
-	"whitelistMintSettings": null,
-	"hiddenSettings": null,
-	"storage": "arweave",
-	"ipfsInfuraProjectId": null,
-	"ipfsInfuraSecret": null,
-	"awsS3Bucket": null,
-	"noRetainAuthority": false,
-	"noMutable": false
+  "tokenStandard": "nft",
+  "number": 3,
+  "symbol": "KY",
+  "sellerFeeBasisPoints": 500,
+  "isMutable": true,
+  "isSequential": false,
+  "creators": [
+    {
+      "address": "DA5p4vhRpNNT17Tdi5SWgiNpV4THQMPSztjZikJMeooQ",
+      "share": 100
+    }
+  ],
+  "uploadMethod": "bundlr",
+  "ruleSet": null,
+  "awsConfig": null,
+  "nftStorageAuthToken": null,
+  "shdwStorageAccount": null,
+  "pinataConfig": null,
+  "hiddenSettings": null,
+  "guards": {
+    "default": {
+      "solPayment": {
+        "value": 0.1,
+        "destination": "DA5p4vhRpNNT17Tdi5SWgiNpV4THQMPSztjZikJMeooQ"
+      },
+      "startDate": {
+        "date": "2023-01-01T00:00:00Z"
+      }
+    }
+  }
 }

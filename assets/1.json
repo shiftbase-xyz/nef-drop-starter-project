@@ -1,19 +1,20 @@
 {
-	"name": "ZENITSU_NFT",
-	"symbol": "",
-	"image": "1.png",
-	"properties": {
-		"files": [
-			{
-				"uri": "1.png",
-				"type": "image/png"
-			}
-		],
-		"creators": [
-			{
-				"address": "7ZHKrJMoY3C92mZnQur3TEAfdiqPnTyM4suKANsh9uBk",
-				"share": 100
-			}
-		]
-	}
+  "name": "ZENITSU",
+  "symbol": "KY",
+  "description": "Collection of Kimetsu no Yaiba.",
+  "image": "1.png",
+  "properties": {
+    "files": [
+      {
+        "uri": "1.png",
+        "type": "image/png"
+      }
+    ],
+    "creators": [
+      {
+        "address": "DA5p4vhRpNNT17Tdi5SWgiNpV4THQMPSztjZikJMeooQ",
+        "share": 100
+      }
+    ]
+  }
 }

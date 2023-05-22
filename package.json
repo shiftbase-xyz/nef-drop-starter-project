@@ -1,0 +1,52 @@
+{
+  "name": "solana-nft-drop",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@types/node": "18.15.11",
+    "@types/react": "18.0.35",
+    "@types/react-dom": "18.0.11",
+    "eslint": "8.38.0",
+    "eslint-config-next": "13.3.0",
+    "next": "13.3.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "typescript": "5.0.4"
+  },
+  "devDependencies": {
+    "@metaplex-foundation/mpl-candy-machine": "6.0.0-alpha.6",
+    "@metaplex-foundation/mpl-essentials": "^0.5.4",
+    "@metaplex-foundation/mpl-token-metadata": "3.0.0-alpha.11",
+    "@metaplex-foundation/umi": "^0.7.0",
+    "@metaplex-foundation/umi-bundle-defaults": "^0.6.0",
+    "@metaplex-foundation/umi-signer-wallet-adapters": "^0.7.0",
+    "@metaplex-foundation/umi-uploader-nft-storage": "^0.7.0",
+    "@solana/wallet-adapter-base": "^0.9.22",
+    "@solana/wallet-adapter-react": "^0.15.32",
+    "@solana/wallet-adapter-react-ui": "^0.9.31",
+    "@solana/wallet-adapter-wallets": "^0.19.16",
+    "@solana/web3.js": "^1.75.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.4.3",
+    "@trivago/prettier-plugin-sort-imports": "^4.1.1",
+    "jest": "^29.5.0",
+    "jest-environment-jsdom": "^29.5.0",
+    "lint-staged": "^13.2.0",
+    "prettier": "^2.8.8",
+    "simple-git-hooks": "^2.8.1"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test": "jest",
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "prettier:check": "prettier --check --ignore-unknown --no-error-on-unmatched-pattern --ignore-path .prettierignore .",
+    "prettier": "prettier --write --ignore-unknown --no-error-on-unmatched-pattern --ignore-path .prettierignore ."
+  }
+}
